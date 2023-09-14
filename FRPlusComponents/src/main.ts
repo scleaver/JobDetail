@@ -1,6 +1,6 @@
-import './assets/main.css'
+import { defineCustomElement } from 'vue';
+import JobDetail from './components/JobDetail.ce.vue';
 
-import { createApp } from 'vue'
-import App from './App.vue'
+const jobDetail = defineCustomElement(JobDetail);
 
-createApp(App).mount('#app')
+customElements.define("job-detail", jobDetail);
