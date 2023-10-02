@@ -1,21 +1,38 @@
 <template>
-  <div>
-    <h2>{{ jobTitle }}</h2>
-    <p>{{ jobDescription }}</p>
+  <div class="c-job-detail">
+    <template v-if="!dataId">
+      <div class="error">Error: Job ID is missing!</div>
+    </template>
+    <template v-else>
+      Job ID: {{ dataId }}<br>
+      Job name: {{ job?.JobName }}
+    </template>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, onMounted } from 'vue';
+import JobService from '@/services/JobService';
+import type { Job } from '@/types/Job';
 
 export default defineComponent({
-  setup() {
-    const jobTitle = ref("Software Engineer");
-    const jobDescription = ref("Develop and maintain software applications.");
+  props: {
+    dataId: {
+      type: String,
+      required: true,
+    },
+  },
+  setup(props) {
+    const job = ref<Job | null>(null);
+
+    onMounted(async () => {
+      if (props.dataId) {
+        job.value = await JobService.getJob(props.dataId);
+      }
+    });
 
     return {
-      jobTitle,
-      jobDescription
+      job,
     };
   },
 });
