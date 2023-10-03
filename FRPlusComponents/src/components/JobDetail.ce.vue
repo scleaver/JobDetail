@@ -1,5 +1,5 @@
 <template>
-  <div class="c-job-detail">
+  <div class="c-job-detail mt-6">
     <template v-if="isLoading">
       <div>Loading...</div>
     </template>
@@ -7,7 +7,22 @@
       <div class="error">{{ errorMessage }}</div>
     </template>
     <template v-else-if="job">
-      <JobSummary :job="job" />
+      <div class="row">
+        <div class="col-xl-9 d-flex">
+          <JobHeader :job="job" />
+        </div>
+        <div class="col-xl-3 d-flex">
+          <JobStatus :job="job" />
+        </div>
+      </div>
+      <div class="row mb-6">
+        <div class="col-xl-6">
+          <JobSummary :job="job" />
+        </div>
+        <div class="col">
+          <CertificatePreview :job="job" />
+        </div>
+      </div>
     </template>
   </div>
 </template>
@@ -15,13 +30,20 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import JobService from '@/services/JobService';
-import JobSummary from '@/components/JobSummary.vue';  // Import JobSummary
+import JobSummary from './JobSummary.vue';
+import JobStatus from './JobStatus.vue';
+import JobHeader from './JobHeader.vue';
+import CertificatePreview from './CertificatePreview.vue';
 import type { Job } from '@/types/Job';
+
 
 export default defineComponent({
   components: {
-    JobSummary,  // Register JobSummary
-  },
+    JobSummary,
+    JobStatus,
+    JobHeader,
+    CertificatePreview
+},
   props: {
     dataId: String,
   },
