@@ -1,10 +1,11 @@
-import axios from 'axios'
+import apiClient from '@/http-common'
 import type { Job } from '@/types/Job'
+import axios from 'axios'
 
 export default class JobService {
   static async getJob(dataId: string): Promise<Job | null> {
     try {
-      const response = await axios.get(`https://local.fr5.com.au/internal/jobs/${dataId}`)
+      const response = await apiClient.get(`/internal/jobs/${dataId}`)
       return response.data as Job
     } catch (error: any) {
       // You can use 'any' here for simplicity

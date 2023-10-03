@@ -1,26 +1,30 @@
 export interface Job {
-    Id: string;
-    JobId: string;
-    UserId: string;
-    CertificateState: string;
-    JobName: string;
-    Filename: string;
-    ProjectFileReleaseNumber: number;
-    Postcode: string;
-    PreviewUrl: string;
-    PreviewFilename: string;
-    Address: string;
-    JobStatus: string;  // Replace with the actual type
-    ClimateZone: number;
-    ClimateZoneName: string;
-    CreatedDateUtc: string;
-    IssuedDateUtc: string | null;
-    Accreditation: string;
-    AssessorReference: string;
-    PropertyType: string;
-    Rating: number | null;
-    Comments: string;
-    OwnerUsername: string;
-    OwnerName: string;
-    OwnerEmail: string;
+    id: string;
+    publicId: string;
+    userId: string;
+    calculationStatus: number;
+    calculationStatusName: string;
+    jobName: string;
+    filename: string;
+    projectFileReleaseNumber: number;
+    executeReleaseNumber: null | number;
+    postcode: string;
+    previewUrl: string;
+    previewFilename: string;
+    address: string;
+    jobStatus: number;
+    jobStatusName: string;
+    climateZone: {
+      fullName: string;
+      name: string;
+      value: number;
+    };
+    createdDateUtc: string;  // You can also use Date if you're parsing this field
+    certificateIssuedDateUtc: null | string;  // You can also use Date if you're parsing this field
+    accreditationNumber: string;
+    assessorReference: string;
+    propertyType: string;
+    rating: number;
+    comment: string;
   }
+  
