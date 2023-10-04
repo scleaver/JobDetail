@@ -30,10 +30,10 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import JobService from '@/services/JobService';
-import JobSummary from './JobSummary.vue';
-import JobStatus from './JobStatus.vue';
-import JobHeader from './JobHeader.vue';
-import CertificatePreview from './CertificatePreview.vue';
+import JobSummary from './JobDetail/JobSummary.vue';
+import JobStatus from './JobDetail/JobStatus.vue';
+import JobHeader from './JobDetail/JobHeader.vue';
+import CertificatePreview from './JobDetail/CertificatePreview.vue';
 import type { Job } from '@/types/Job';
 
 
