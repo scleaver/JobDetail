@@ -3,12 +3,20 @@
         <div class="card-header border-0">
             <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-end">
                 <h2 class="card-header-title h4 text-uppercase">Job information</h2>
-                <button type="button" class="btn btn-sm btn-outline-primary ms-md-auto" data-bs-toggle="modal"
-                    data-bs-target="#allJobDetails">Full details</button>
             </div>
         </div>
         <div class="card-body pt-0">
             <dl class="c-key-value mb-0">
+                <div>
+                    <dt>
+                        <template v-if="job.jobStatus != 7">
+                            FirstRate5 ID
+                        </template>
+                        <template v-else>Certificate ID</template></dt>
+                    <dd>
+                        {{ job.publicId }}
+                    </dd>
+                </div>
                 <div>
                     <dt>Certificate issued</dt>
                     <dd>
@@ -41,8 +49,20 @@
                     <dd>{{ job.address }}</dd>
                 </div>
                 <div>
+                    <dt>Assessed postcode</dt>
+                    <dd>{{ job.postcode }}</dd>
+                </div>
+                <div>
+                    <dt>Property type</dt>
+                    <dd>{{ job.propertyType }}</dd>
+                </div>
+                <div>
                     <dt>NatHERS climate zone</dt>
                     <dd>{{ job.climateZone.fullName }}</dd>
+                </div>
+                <div>
+                    <dt>Assessor accrediation no.</dt>
+                    <dd>{{ job.accreditationNumber }}</dd>
                 </div>
                 <div>
                     <dt>Assessor reference</dt>
@@ -54,12 +74,16 @@
                     </dd>
                 </div>
                 <div>
-                    <dt>FirstRate5 job ID</dt>
-                    <dd>{{ job.publicId }}</dd>
-                </div>
-                <div>
                     <dt>Created</dt>
                     <dd>{{ formatDate(job.createdDateUtc) }}</dd>
+                </div>
+                <div>
+                    <dt>Comments</dt>
+                    <dd><template v-if="job.comment">
+                            {{ job.comment }}
+                        </template>
+                        <span v-else class="text-muted">No comments.</span>
+                    </dd>
                 </div>
             </dl>
         </div>
